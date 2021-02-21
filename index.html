@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Badge Shield Creator</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+</head>
+<body style="font-family: 'Roboto', sans-serif;">
+<style>
+    input:focus {
+        border-bottom: 1px solid royalblue !important;
+        box-shadow: 0 1px 0 0 royalblue !important;
+    }
+    label.active {
+        color: royalblue !important;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <h4 style="width: 100%; text-align: center">My Awesome Badge</h4>
+    </div>
+    <div class="row">
+        <div class="col l3 m2 s0"></div>
+        <div class="input-field col l6 m8 s12">
+            <input  id="label" type="text">
+            <label for="label">Badge Label</label>
+        </div>
+        <div class="col l3 m2 s0"></div>
+    </div>
+    <div class="row">
+        <div class="col l3 m2 s0"></div>
+        <div class="input-field col l6 m8 s12">
+            <input  id="label-background" type="text">
+            <label for="label-background">Badge Background Color</label>
+        </div>
+        <div class="col l3 m2 s0"></div>
+    </div>
+    <div class="row">
+        <div class="col l3 m2 s0"></div>
+        <div class="input-field col l6 m8 s12">
+            <input  id="logo" type="text">
+            <label for="logo">Logo Name</label>
+        </div>
+        <div class="col l3 m2 s0"></div>
+    </div>
+    <div class="row">
+        <div class="col l3 m2 s0"></div>
+        <div class="input-field col l6 m8 s12">
+            <input  id="logo-color" type="text">
+            <label for="logo-color">Logo Color</label>
+        </div>
+        <div class="col l3 m2 s0"></div>
+    </div>
+    <div class="row">
+        <div class="col l3 m2 s0"></div>
+        <div class="input-field col l6 m8 s12">
+            <input  id="link" type="text">
+            <label for="link">Badge Link</label>
+        </div>
+        <div class="col l3 m2 s0"></div>
+    </div>
+    <div class="row">
+        <div class="col l3 m2 s0"></div>
+        <div class="col l6 m8 s12">
+            <img id="example-img" src="" alt="" />
+        </div>
+        <div class="col l3 m2 s0"></div>
+    </div>
+
+    <div class="row">
+        <div class="col l3 m2 s0"></div>
+        <div class="col l6 m8 s12">
+            <label style="color: black" id="url-text"></label>
+        </div>
+        <div class="col l3 m2 s0"></div>
+    </div>
+    <div class="row">
+        <div class="col l3 m2 s0"></div>
+        <div class="col l6 m8 s12">
+            <input class="btn blue darken-3" id="url" type="text" value="GET URL">
+        </div>
+        <div class="col l3 m2 s0"></div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<script>
+    document.getElementById('url').onclick = () => {
+        const label = document.getElementById('label').value.toLowerCase();
+        let labelBackground = document.getElementById('label-background').value.toLowerCase();
+        const logo = document.getElementById('logo').value.toLowerCase();
+        let logoColor = document.getElementById('logo-color').value.toLowerCase();
+        const badgeLink = document.getElementById('link').value.toLowerCase();
+
+        logoColor = logoColor === "" ? "" : `&logoColor=${logoColor}`;
+        labelBackground = labelBackground === "" ? "white" : labelBackground;
+
+        const imgUrl = `https://shields.io/badge/%20-%20${label}-${labelBackground}?style=for-the-badge&logo=${logo}&link=${badgeLink}&link=${badgeLink}${logoColor}`;
+
+        const md = `[![img](${imgUrl})](LINK)`
+
+        document.getElementById('example-img').setAttribute('src', imgUrl);
+        document.getElementById('url-text').innerText = md;
+    };
+</script>
+</body>
+</html>
